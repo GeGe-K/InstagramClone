@@ -41,6 +41,11 @@ class Image(models.Model):
   def update_caption(self):
     self.update()
 
+  @classmethod
+  def get_all_images(cls):
+      pictures = cls.objects.all()
+      return pictures
+
 
 
 
