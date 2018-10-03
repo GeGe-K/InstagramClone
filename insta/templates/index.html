@@ -2,4 +2,18 @@
 
 {% block content %}
 {{block.super}}
+<body>
+
+</body>
+    <div class="container">
+        <div class="row">
+            {% for picture in pictures %}
+            <div class="col-xs-12 col-sm-6 col-md-4 images">
+                <img src="{{picture.image.url}}"  data-toggle="modal" data-target="#exampleModalCenter{{photo.id}}" class = "img-responsive imagee" alt="" style="height:400px;width: 100% !important;position: center;size: cover;">
+                
+            {% endfor %}
+      
+        </div>
+        </div>
+    </div>
 {% endblock %}
