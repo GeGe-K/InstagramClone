@@ -3,3 +3,4 @@ virtual/
 instagram/__pycache__/
 .vscode
 insta/__pycache__/
+insta/migrations/__pycache__/
