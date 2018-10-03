@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'insta.apps.InstaConfig',
+    'bootstrap3',
+    'bootstrap4',
 ]
 
 MIDDLEWARE = [
