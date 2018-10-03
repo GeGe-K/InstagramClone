@@ -1,0 +1,4 @@
+virtual/
+.env
+instagram/__pycache__/
+.vscode
