@@ -1,0 +1,43 @@
+{% extends 'base.html'%} 
+{% block content %}
+<div class="container">
+  <br>
+  <br>
+  <br>
+  <br>
+  
+  <div class="row results">
+    {% if images %}
+    <h2><b>Found {{ users|length }} results of searched users {{message}}</b></h2>
+    {% else %}
+    <h2> <b>Found 0 results for the searched user {{message}}</b></h2>
+    {% endif %}
+    
+  </div>
+  <br>
+  
+  
+  <div class="row">
+    
+    {% if users %}
+    {% for user in users %}
+    <div class="col-xs-12 col-sm-6 col-md-4">
+      {{user.name}}
+
+      <br>
+      <br>
+    </div>
+    {% endfor %}
+    {% endif %}
+  </div>
+</div>
+<style>
+  @import url('https://fonts.googleapis.com/css?family=Nunito|Oleo+Script+Swash+Caps');
+  
+  .results{
+    font-family: 'Lora', serif;
+    color:#ece3d1;
+    font-size: 20px;
+  }
+</style>
+{% endblock %}
