@@ -10,6 +10,8 @@ def index(request):
   pictures = Image.get_all_images()
   return render(request, 'index.html',{"pictures":pictures})
 
+
+
 # def images(request):
 #   '''
 #   View function that queries the database and returns images added
