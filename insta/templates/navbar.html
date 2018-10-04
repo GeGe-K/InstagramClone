@@ -1,48 +1,39 @@
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-<link href="https://fonts.googleapis.com/css?family=Oleo+Script+Swash+Caps+Lora" rel="stylesheet">
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar">
-  <a class="navbar-brand head" href="/" id="gallery"><img src="/static/photos/insta.png" class = "img-responsive" style="width:50px;height: 50px;">&nbsp;<b>Instagram</b></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Oleo+Script+Swash+Caps+Lora" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet">
   
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item dropdown dropdown">
-        <a class="nav-link dropdown-toggle locations" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:#ece3d1;">
-          Locations&nbsp;<i class="fas fa-map-marker-alt"></i>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background:rgb(32, 32, 32)">
-          <a class="dropdown-item" href="/location/3">Nairobi</a>
-          <a class="dropdown-item" href="/location/4">Mombasa</a>
-          <a class="dropdown-item" href="/location/1">Paris</a>
-          <a class="dropdown-item" href="/location/2">New York</a>
-          <a class="dropdown-item" href="/location/7">Great Britain</a>
-          <a class="dropdown-item" href="/location/6">Spain</a>
-          <a class="dropdown-item" href="/location/5">America</a>
-          <a class="dropdown-item" href="/location/9">South America</a>
-          <a class="dropdown-item" href="/location/8">Australia</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light navbar">
+        <div class="container" style="text-align:center;">
+          <a class="navbar-brand head" href="/" id="gallery"><img src="/static/photos/insta.png" class = "img-responsive" style="width:50px;height: 50px;">&nbsp;&nbsp;<span class="line" style="height: 35px;width: 2px;background-color: black;margin-top: 10px;"></span><b>Instagram</b></a>
+          
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <form class="navbar-form navbar-left" action="">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="&#xF002; Search" name="image" style="font-family:FontAwesome;">
+           
+              <div class="input-group-btn">
+                <button class="btn btn-outline-success" type="submit">
+                    <i class="fas fa-search"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+          <span><i class="fas fa-user"></i> &nbsp; &nbsp;<i class="fas fa-upload"></i></span>
+         
         </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle categories" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:#ece3d1;">
-          Categories
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background:rgb(32, 32, 32)">
-          <a class="dropdown-item" href="/category/1">Music</a>
-          <a class="dropdown-item" href="/category/2">Cities</a>
-          <a class="dropdown-item" href="/category/4">Sports</a>
-          <a class="dropdown-item" href="/category/5">Nature</a>
-          <a class="dropdown-item" href="/category/3">Technology</a>
-        </div>
-      </li>
-    </ul>
-  </div>
-</nav>
+      </nav>
+
 
 <style>
   @import url('https://fonts.googleapis.com/css?family=Nunito|Oleo+Script+Swash+Caps');
+  @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
   
   .navbar{
     font-family: 'Lora', serif;
@@ -56,21 +47,28 @@
     font-size: 30px;
     
   }
+  ::placeholder{
+    font-family: 'Libre Baskerville', serif;
+  }
   .dropdown-item{
     color:#ece3d1;
   }
   
   .head{
-    color:#ece3d1 !important;
+    color:black !important;
+    font-family: billabong;
   }
-  .head:hover{
-    color: green !important;
-  }
-  .categories:hover{
-    color: green !important;
-  }
-  .locations:hover{
-    color: green !important;
-  }
+  @font-face {
+    font-family: billabong;
+    src: url('/static/fonts/Billabong.ttf');
+    font-weight: bold;
+}
+.line{
+ height: 35px;
+ width: 2px;
+ background-color: black;
+ margin-top: 10px;
+
+}
   
 </style>
