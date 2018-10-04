@@ -8,14 +8,15 @@
   <meta charset="utf-8">
 
   {% if title %}
-  <title>Moringa Tribune - {{title}}</title>
+  <title>Instagram - {{title}}</title>
   {% else %}
-    <title> Moringa Tribune </title>
+    <title> Instagram </title>
   {% endif %}
 
   {% block styles %}
     {% bootstrap_css %}
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <link rel="shortcut icon" href="/static/photos/insta.png" type="image/x-icon">
   {% endblock %}
 
 </head>
@@ -25,7 +26,9 @@
     <br>
     <br>
     <br>
-    {% block content %} <h1 class='text-center'>Instagram</h1> {%endblock%}
+    {% block content %}
+
+    {%endblock%}
 
     {% block scripts %}
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
