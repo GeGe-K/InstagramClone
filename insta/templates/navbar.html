@@ -1,74 +1,78 @@
+{%extends "registration/base.html"%}
+{% load bootstrap3 %}
+{% load static %}
 
-  <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
-  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-  <link href="https://fonts.googleapis.com/css?family=Oleo+Script+Swash+Caps+Lora" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville" rel="stylesheet">
-  
-    <nav class="navbar navbar-expand-lg navbar-light bg-light navbar">
-        <div class="container" style="text-align:center;">
-          <a class="navbar-brand head" href="/" id="gallery"><img src="/static/photos/insta.png" class = "img-responsive" style="width:50px;height: 50px;">&nbsp;&nbsp;<span class="line" style="height: 35px;width: 2px;background-color: black;margin-top: 10px;"></span><b>Instagram</b></a>
-          
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <form class="navbar-form navbar-left" action="">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="&#xF002; Search" name="image" style="font-family:FontAwesome;">
-           
-              <div class="input-group-btn">
-                <button class="btn btn-outline-success" type="submit">
-                    <i class="fas fa-search"></i>
-                </button>
-              </div>
-            </div>
-          </form>
-          <span><i class="fas fa-user"></i> &nbsp; &nbsp;<i class="fas fa-upload"></i></span>
-         
-        </div>
+{% block styles %}
+{{block.super}}
+<link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+
+{% endblock %}
+  {% block content %}
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+      
+
+    <nav class="navbar">
+        <section class="logo-section"><img class="logo" src="https://seeklogo.com/images/I/instagram-new-2016-glyph-logo-84CB825424-seeklogo.com.png"/>
+          <div></div><img class="logoname" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/2000px-Instagram_logo.svg.png"/>
+        </section>
+        <form class="search-section">
+          <input class="input-search" type="search" name="search" placeholder="search"/>
+        </form>
+        <section class="icons-section"><a class="fa fa-compass" style="font-size:25px;" href="#"></a><i class="fa fa-heart" style="font-size:25px;"></i><i class="fa fa-user" style="font-size:25px;"></i></section>
       </nav>
-
-
+</body>
+</html>
 <style>
-  @import url('https://fonts.googleapis.com/css?family=Nunito|Oleo+Script+Swash+Caps');
-  @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
-  
-  .navbar{
-    font-family: 'Lora', serif;
-    width: 100%;
-    font-size: 20px;
-    position: fixed;
-    z-index: 1;
-    
-  }
-  #gallery{
-    font-size: 30px;
-    
-  }
-  ::placeholder{
-    font-family: 'Libre Baskerville', serif;
-  }
-  .dropdown-item{
-    color:#ece3d1;
-  }
-  
-  .head{
-    color:black !important;
-    font-family: billabong;
-  }
-  @font-face {
-    font-family: billabong;
-    src: url('/static/fonts/Billabong.ttf');
-    font-weight: bold;
+  .navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 2px solid #ddd;
 }
-.line{
- height: 35px;
- width: 2px;
- background-color: black;
- margin-top: 10px;
-
+.navbar .logo-section {
+  display: flex;
+  align-items: center;
 }
-  
+.navbar .logo-section div {
+  align-self: stretch;
+  width: 1px;
+  background: black;
+  margin: 0 20px;
+}
+.navbar .icons-section .fa {
+  text-decoration: none;
+  color: inherit;
+  font-size: 2rem;
+  margin: 0 10px;
+}
+.navbar .logo {
+  width: 40px;
+}
+.navbar .logoname {
+  width: 130px;
+}
+.navbar .input-search {
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  border: 2px solix #ddd;
+  outline: 0;
+}
+.navbar .input-search:focus {
+  text-align: left;
+}
+.icons-section{
+  font-size: 40px !important;
+}
 </style>
+{% endblock%}

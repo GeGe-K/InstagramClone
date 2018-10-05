@@ -1,19 +1,79 @@
 {%extends 'base.html'%}
+{% load bootstrap3 %}
+{% load static %}
+
+{% block styles %}
+{{block.super}}
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+{% endblock %}
 
 {% block content %}
-{{block.super}}
 <body>
-
-</body>
-    <div class="container">
+    <div class="container-fluid">
+            <div class="container">
+                    <div class="row">
+                        {% for picture in pictures %}
+                        <div class="col-xs-12 col-sm-12 col-md-8 images">
+                            <div class="card" style="width:100% !important;">
+                                <div class="card-header">
+                                    {{user.username}}
+                                </div>
+                                <div class="card-body">
+                                        <img src="{{picture.image.url}}"  data-toggle="modal" data-target="#exampleModalCenter{{photo.id}}" class = "img-responsive imagee" alt="" style="height:100%;width: 100% !important;position: center;size: cover;">
+                                </div>
+                            </div>
+                            <br>
+                            
+                            
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+    </div>
+    
+    <!-- <div class="container">
         <div class="row">
             {% for picture in pictures %}
             <div class="col-xs-12 col-sm-6 col-md-4 images">
-                <img src="{{picture.image.url}}"  data-toggle="modal" data-target="#exampleModalCenter{{photo.id}}" class = "img-responsive imagee" alt="" style="height:400px;width: 100% !important;position: center;size: cover;">
-                
-            {% endfor %}
-      
+                <div class="card">
+                    <div class="card-header">
+                        skfjssksj   
+                    </div>
+                    <br>
+                    <br>
+                    <div class="card-body">
+                        <img src="{{picture.image.url}}"  data-toggle="modal" data-target="#exampleModalCenter{{photo.id}}" class = "img-responsive imagee" alt="" style="height:400px;width: 700px !important;position: center;size: cover;">
+                    </div>
+                    <br>
+                    
+                    {% endfor %}
+                    
+                </div>
+            </div>
         </div>
-        </div>
-    </div>
+    </div>  -->
+</body>
+<style>
+    body{
+        background: rgb(245, 245, 245);
+    }
+    .card {
+        position: relative;
+        left: 140px;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 1px solid rgba(0,0,0,.125);
+        border-radius: .25rem;
+    }
+    
+</style>
 {% endblock %}
