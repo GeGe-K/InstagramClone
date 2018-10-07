@@ -8,6 +8,13 @@ urlpatterns=[
     url(r'^signup/$', views.signup, name='signup'),
     url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
         views.activate, name='activate'),
+    url(r'^profile/',views.profile,name ='profile'),
+    url(r'^viewprofile/(?P<id>\d+)',views.view_profile,name = 'viewprofile'),
+    url(r'^image/$', views.add_new_image, name='upload_image'),
+    url(r'^ search/',views.search, name='search'),
+    url(r'^comment/(?P<image_id>\d+)', views.comment, name='comment'),
+    url(r'^like/(?P<image_id>\d+)', views.like, name='like'),
+    url(r'^follow/(?P<user_id>\d+)', views.follow, name='follow'),
 
 ]
 if settings.DEBUG:
