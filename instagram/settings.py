@@ -51,7 +51,8 @@ INSTALLED_APPS = [
     'insta.apps.InstaConfig',
     'bootstrap3',
     'bootstrap4',
-    'friendship'
+    'friendship',
+    'tinymce',
 ]
 LOGIN_REDIRECT_URL = 'indexpage'
 
