@@ -5,6 +5,7 @@
 {% block styles %}
 {{block.super}}
 <link rel="stylesheet" href="{% static 'css/index.css' %}">
+<link href="https://fonts.googleapis.com/css?family=Chicle|Lateef" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
@@ -14,66 +15,100 @@
 {% block content %}
 <body>
     <div class="container-fluid">
-            <div class="container">
-                    <div class="row">
-                        {% for picture in pictures %}
-                        <div class="col-xs-12 col-sm-12 col-md-8 images">
-                            <div class="card" style="width:100% !important;">
-                                <div class="card-header">
-                                    {{user.username}}
+        <div class="container">
+            <div class="row">
+                {% for image in images %}
+                <div class="col-xs-12 col-sm-12 col-md-8 images">
+                    <div class="card" style="height:100% !important;width:100% !important;">
+                        <div class="card-header" style="background: rgb(255, 255, 255);">
+                            <a href="{% url 'viewprofile' id=image.profile.id %}" class="username">
+                                <span><img src="{{image.details.pic.url}}" class="rounded-circle" style="width:10%; height:auto; font-size: 20px !important;" href="{% url 'viewprofile' id=image.profile.id %}"/>&nbsp;
+                                    {{image.profile.username}}</a></span>
                                 </div>
                                 <div class="card-body">
-                                        <img src="{{picture.image.url}}"  data-toggle="modal" data-target="#exampleModalCenter{{photo.id}}" class = "img-responsive imagee" alt="" style="height:100%;width: 100% !important;position: center;size: cover;">
+                                    <a href="{% url 'viewprofile' id=image.profile.id  %}"> <img src="{{image.image.url}}"   class = "img-responsive imagee" alt="" style="height:600px !important;width: 100% !important;position: center;size: cover;"></a>
+                                    <hr>
+                                    <br>
+                                    <div class="container">
+                                        <ul class="list-inline">
+                                            <li class="list-inline-item">
+                                                <a href=" {% url 'like' image_id=image.id %}">
+                                                    <i class="far fa-heart" style="color: black !important;font-size: 30px;opacity: 0.7;" aria-hidden="true"></i></a>
+                                                    &nbsp; &nbsp;
+                                                    <a href=" {% url 'comment' image_id=image.id %}">
+                                                        <i class="far fa-comment" aria-hidden="true" style="color:black;font-size: 30px;opacity: 0.7;font-weight: 5px !important;"></i></a>
+                                                        <hr>
+                                                    </li>
+                                                    <a href="">
+                                                        <i class="far fa-bookmark" aria-hidden="true" style="text-align:right;color:black;font-size: 30px;opacity: 0.7;font-weight: 5px !important;"></i></a>
+                                                    </ul>
+                                                    <h5 style=" font-size: 20px !important;"><strong>{{image.profile.username}}</strong> {{image.caption}}</h5>
+                                                    <p>{{image.count_likes}} likes</p>
+                                                    <p class=""> {{image.comment.count}} comments </p>
+                                                    <div class="card-body" >
+                                                        {% for comment in comments %}
+                                                        {% if comment.image_id == image.id%}
+                                                        <br>
+                                                        <h5 style=" font-size: 20px !important;"><strong>{{comment.commenter}}</strong> {{comment.comment_itself}}</h5>
+                                                        <hr>
+                                                        
+                                                        {% endif %}
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br><br>
+                                    <br>
+                                    {% endfor %}
+                                    
                                 </div>
+                                
                             </div>
-                            <br>
-                            
-                            
                         </div>
-                        {% endfor %}
+                        
                     </div>
-                </div>
-    </div>
-    
-    <!-- <div class="container">
-        <div class="row">
-            {% for picture in pictures %}
-            <div class="col-xs-12 col-sm-6 col-md-4 images">
-                <div class="card">
-                    <div class="card-header">
-                        skfjssksj   
-                    </div>
-                    <br>
-                    <br>
-                    <div class="card-body">
-                        <img src="{{picture.image.url}}"  data-toggle="modal" data-target="#exampleModalCenter{{photo.id}}" class = "img-responsive imagee" alt="" style="height:400px;width: 700px !important;position: center;size: cover;">
-                    </div>
-                    <br>
                     
-                    {% endfor %}
-                    
-                </div>
-            </div>
-        </div>
-    </div>  -->
-</body>
-<style>
-    body{
-        background: rgb(245, 245, 245);
-    }
-    .card {
-        position: relative;
-        left: 140px;
-        display: flex;
-        -ms-flex-direction: column;
-        flex-direction: column;
-        min-width: 0;
-        word-wrap: break-word;
-        background-color: #fff;
-        background-clip: border-box;
-        border: 1px solid rgba(0,0,0,.125);
-        border-radius: .25rem;
-    }
-    
-</style>
-{% endblock %}
+                </body>
+                <style>
+                    body{
+                        background: rgb(250, 249, 249);
+                        font-family: 'Lateef', cursive;
+                        font-size: 20px !important;
+                        
+                    }
+                    .card {
+                        position: relative;
+                        left: 140px;
+                        display: flex;
+                        -ms-flex-direction: column;
+                        flex-direction: column;
+                        min-width: 0;
+                        word-wrap: break-word;
+                        background-color: #fff;
+                        background-clip: border-box;
+                        border: 1px solid rgba(0,0,0,.125);
+                        border-radius: .25rem;
+                    }
+                    .fa-bookmark:before {
+                        content: "\f02e";
+                        padding-left: 565px;
+                    }
+                    .imagee{
+                        height: 630px !important;
+                        width: 100% !important;
+                        position: center;
+                        size: cover;
+                    }
+                    .username{
+                        color: black;
+                        font-size: px;
+                        font-weight: bold;
+                        font-family: 'Lateef', cursive;
+                    }
+                    h5{
+                        margin-top: -30px;
+                    }
+                </style>
+                {% endblock %}
