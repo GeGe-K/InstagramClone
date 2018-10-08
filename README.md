@@ -6,7 +6,7 @@
 Gift Lumumba
 
 ## Link to Deployed Site on Heroku
-https://imgsplash.herokuapp.com/
+
 
 ## Setup and installation
 
@@ -26,11 +26,11 @@ https://imgsplash.herokuapp.com/
 
 - Create a .env file and add the following:
 
-    SECRET_KEY = '<Secret_key>'
-    DB_NAME = 'instagram'
-    DB_USER = '<Username>'
-    DB_PASSWORD = 'your db password'
-    DEBUG = True
+    - SECRET_KEY = `<Secret_key>`
+    - DB_NAME = `instagram`
+    - DB_USER = `<Username>`
+    - DB_PASSWORD = `your db password`
+    - DEBUG = `True`
 
 - Run Initial Migration
     `python3.6 manage.py makemigrations <name of the app>`
