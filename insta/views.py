@@ -20,7 +20,8 @@ def index(request):
     images = Image.objects.all()
     comments = Comment.objects.all()
     likes = Likes.objects.all
-    profile = Profile.objects.all()
+    people = Follow.objects.following(request.user)
+    profile = User.objects.all()
     return render(request,'index.html',locals())
 
 
