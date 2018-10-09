@@ -24,45 +24,45 @@ def index(request):
     return render(request,'index.html',locals())
 
 
-def signup(request):
-    if request.method == 'POST':
-        form = SignupForm(request.POST)
-        if form.is_valid():
-            user = form.save(commit=False)
-            user.is_active = False
-            user.save()
-            current_site = get_current_site(request)
-            mail_subject = 'Activate your Instagram account.'
-            message = render_to_string('registration/activate_account.html', {
-                'user': user,
-                'domain': current_site.domain,
-                'uid':urlsafe_base64_encode(force_bytes(user.pk)),
-                'token':account_activation_token.make_token(user),
-            })
-            to_email = form.cleaned_data.get('email')
-            email = EmailMessage(
-                        mail_subject, message, to=[to_email]
-            )
-            email.send()
-            return HttpResponse('Please confirm your email address to complete the registration')
-    else:
-        form = SignupForm()
-    return render(request, 'registration/signup.html', {'form': form})
+# def signup(request):
+#     if request.method == 'POST':
+#         form = SignupForm(request.POST)
+#         if form.is_valid():
+#             user = form.save(commit=False)
+#             user.is_active = False
+#             user.save()
+#             current_site = get_current_site(request)
+#             mail_subject = 'Activate your Instagram account.'
+#             message = render_to_string('registration/activate_account.html', {
+#                 'user': user,
+#                 'domain': current_site.domain,
+#                 'uid':urlsafe_base64_encode(force_bytes(user.pk)),
+#                 'token':account_activation_token.make_token(user),
+#             })
+#             to_email = form.cleaned_data.get('email')
+#             email = EmailMessage(
+#                         mail_subject, message, to=[to_email]
+#             )
+#             email.send()
+#             return HttpResponse('Please confirm your email address to complete the registration')
+#     else:
+#         form = SignupForm()
+#     return render(request, 'registration/signup.html', {'form': form})
 
-def activate(request, uidb64, token):
-    try:
-        uid = force_text(urlsafe_base64_decode(uidb64))
-        user = User.objects.get(pk=uid)
-    except(TypeError, ValueError, OverflowError, User.DoesNotExist):
-        user = None
-    if user is not None and account_activation_token.check_token(user, token):
-        user.is_active = True
-        user.save()
-        login(request, user)
-        # return redirect('home')
-        return HttpResponse('Thank you for your email confirmation. Now you can login your account.''<a href="/accounts/login/"> click here </a>')
-    else:
-        return HttpResponse('Activation link is invalid!')
+# def activate(request, uidb64, token):
+#     try:
+#         uid = force_text(urlsafe_base64_decode(uidb64))
+#         user = User.objects.get(pk=uid)
+#     except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+#         user = None
+#     if user is not None and account_activation_token.check_token(user, token):
+#         user.is_active = True
+#         user.save()
+#         login(request, user)
+#         # return redirect('home')
+#         return HttpResponse('Thank you for your email confirmation. Now you can login your account.''<a href="/accounts/login/"> click here </a>')
+#     else:
+#         return HttpResponse('Activation link is invalid!')
 
 @login_required(login_url='accounts/login/')
 def add_new_image(request):
@@ -83,6 +83,7 @@ def add_new_image(request):
 @login_required(login_url='/login')
 def profile(request):
     current_user = request.user
+  
     if request.method == 'POST':
         form = ProfileForm(request.POST,request.FILES)
         if form.is_valid():
@@ -95,14 +96,14 @@ def profile(request):
     return render(request, 'profile/new_profile.html', locals())
 
 @login_required(login_url='/accounts/login/')
-def view_profile(request, id):
+def view_profile(request,id):
     searched_user=User.objects.filter(id=id).first()
-    profile = searched_user.profile
+    profile = searched_user
     details = Profile.get_profile_by_id(id)
     images = Image.get_images_on_profile(id)
 
     users = User.objects.get(id=id)
-    follower = len(Follow.objects.followers(users))
+    followers = len(Follow.objects.followers(users))
     following = len(Follow.objects.following(users))
     app_users=User.objects.all()
     guys_following=Follow.objects.following(request.user)
@@ -110,17 +111,24 @@ def view_profile(request, id):
     return render(request,'profile/user_profile.html',locals())
 
 
-def search(request):
-    profile_info = User.objects.all()
+@login_required(login_url='/accounts/login/')
+def search_user(request):
+    """
+    Function that searches for profiles based on the usernames
+    """
+    if 'username' in request.GET and request.GET["username"]:
+        name = request.GET.get("username")
+        searched_profiles = User.objects.filter(username__icontains=name)
+        message = f"{name}"
+        profiles = User.objects.all()
+        people = Follow.objects.following(request.user)
+        print(profiles)
+        return render(request, 'search.html', {"message":message, "usernames":searched_profiles, "profiles":profiles,})
+ 
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'search.html', {"message":message})
 
-    if 'username' in request.GET and request.GET['username']:
-        search_term = request.GET.get('username')
-        search_results = User.objects.filter(username__icontains=search_term)
-        print(search_results)
-
-        return render(request,'search.html',locals())
-
-    return redirect(index)
 
 def comment(request,image_id):
     current_user=request.user
@@ -147,11 +155,21 @@ def comment(request,image_id):
 
     return render(request, 'comment.html', locals())
 
+@login_required(login_url='/accounts/login/')
 def follow(request,user_id):
-    users=User.objects.get(id=user_id)
-    follow = Follow.objects.add_follower(request.user, users)
+    users = User.objects.get(id = user_id)
+    follow = Follow.objects.add_follower(request.user,users)
 
-    return redirect('/profile/', locals())
+    return redirect('indexpage')
+
+@login_required(login_url='/accounts/login/')
+def unfollow(request,user_id):
+    users = User.objects.get(id = user_id)
+
+    follow = Follow.objects.remove_follower(request.user,users)
+
+    return redirect('indexpage')
+
 
 def like(request, image_id):
     current_user = request.user
@@ -160,11 +178,3 @@ def like(request, image_id):
     new_like.save()
 
     return redirect('indexpage')
-
-# def images(request):
-#   '''
-#   View function that queries the database and returns images added
-#   '''
-#   pictures = Image.get_all_images()
-
-#   return render(request,'index.html',{"pictures":pictures})
