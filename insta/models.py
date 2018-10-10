@@ -11,6 +11,7 @@ class Profile(models.Model):
   pic = models.ImageField(upload_to='images/')
   user = models.OneToOneField(User,blank = True,on_delete=models.CASCADE,related_name = "profile")
   bio = models.TextField()
+     
 
 
   @receiver(post_save, sender=User)
@@ -35,6 +36,7 @@ class Profile(models.Model):
 
   def delete_profile(self):
     self.delete()
+
 
   @classmethod
   def search_profile(cls, name):

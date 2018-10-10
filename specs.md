@@ -12,4 +12,3 @@
 | Follow others| click `follow` button on another users profile page| The follow button changes to following |
 | View other people's posts and like | Click on a like icon below the image to like a picture | Number of likes increases by one |
 |Comment on other peoples posts| Click on `add comments` add a comment |The commet is displayed at the bottom of the card |
-| View image details | Click on an image in the profile page| A modal class appears with details of the clicked on image |

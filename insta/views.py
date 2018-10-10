@@ -14,6 +14,7 @@ from django.core.mail import EmailMessage
 from django.contrib.auth.models import User
 from friendship.models import Friend, Follow, Block
 
+
 @login_required(login_url='/accounts/login/')
 def index(request):
     current_user = request.user
@@ -23,6 +24,7 @@ def index(request):
     people = Follow.objects.following(request.user)
     profile = User.objects.all()
     return render(request,'index.html',locals())
+
 
 
 # def signup(request):
