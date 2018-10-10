@@ -32,6 +32,7 @@
                     <a href="{% url 'viewprofile' id=image.profile.id  %}"> <img src="{{image.image.url}}" class="img-responsive imagee"
                             alt="" style="height:600px !important;width: 100% !important;position: center;size: cover;"></a>
                     <hr>
+                    <p class="text-muted" style="color:black !important;">Posted <b>{{image.posted_on|timesince}}</b> ago</p>
                     <br>
 
                     <ul class="list-inline">

@@ -8,8 +8,8 @@ from friendship.models import Friend,Follow,Block
 
 # Create your models here.
 class Profile(models.Model):
-  pic = models.ImageField(upload_to='images/')
-  user = models.OneToOneField(User,blank = True,on_delete=models.CASCADE,related_name = "profile")
+  pic = models.ImageField(upload_to='images/',blank=True)
+  user = models.OneToOneField(User,null = True,on_delete=models.CASCADE,related_name = "profile")
   bio = models.TextField()
      
 
@@ -55,13 +55,17 @@ class Profile(models.Model):
 
 class Image(models.Model):
   name = models.CharField(max_length=50)
-  image = models.ImageField(upload_to = 'images/')
+  image = models.ImageField(upload_to = 'images/',blank=True)
   caption = models.TextField(blank = True)
+  posted_on = models.DateTimeField(auto_now_add=True)
   profile = models.ForeignKey(User, blank=True,on_delete = models.CASCADE)
   details = models.ForeignKey(Profile, null=True)
 
   def __str__(self):
       return self.name
+
+  class Meta:
+        ordering = ['posted_on']
 
   def save_image(self):
     self.save()
