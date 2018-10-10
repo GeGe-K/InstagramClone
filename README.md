@@ -6,7 +6,7 @@
 Gift Lumumba
 
 ## Link to Deployed Site on Heroku
-
+https://instaapp.herokuapp.com/
 
 ## Setup and installation
 
