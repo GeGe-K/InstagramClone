@@ -4,6 +4,9 @@
 
 {% block styles %}
 {{block.super}}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
 <link rel="stylesheet" href="{% static 'css/index.css' %}">
 <link href="https://fonts.googleapis.com/css?family=Chicle|Lateef" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
@@ -17,15 +20,15 @@
 <body>
     <div class="container">
         {% for image in images %}
-        <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 images">
-            <div class="card" style="height:100% !important;width:100% !important;">
-                <div class="card-header" style="background: rgb(255, 255, 255);">
+        <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
+            <div class="thumbnail">
+                <div class="thumbnail-header" style="background: rgb(255, 255, 255);">
                     <a href="{% url 'viewprofile' id=image.profile.id %}" class="username">
                         <img src="{{image.details.pic.url}}" class="rounded-circle" style="width:10%; height:auto; font-size: 20px !important;"
                             href="{% url 'viewprofile' id=image.profile.id %}" />&nbsp;
                         {{image.profile.username}}</a>
                 </div>
-                <div class="card-body">
+                <div class="thumbnail-body">
                     <a href="{% url 'viewprofile' id=image.profile.id  %}"> <img src="{{image.image.url}}" class="img-responsive imagee"
                             alt="" style="height:600px !important;width: 100% !important;position: center;size: cover;"></a>
                     <hr>
@@ -40,9 +43,8 @@
                             <a href=" {% url 'comment' image_id=image.id %}">
                                 <i class="far fa-comment" aria-hidden="true" style="color:black;font-size: 30px;opacity: 0.7;font-weight: 5px !important;"></i></a>
                             <hr>
+
                         </li>
-                        <a href="">
-                            <i class="far fa-bookmark" aria-hidden="true" style="text-align:right;color:black;font-size: 30px;opacity: 0.7;font-weight: 5px !important;"></i></a>
                     </ul>
                     <h5 style=" font-size: 20px !important;"><strong>{{image.profile.username}}</strong>
                         {{image.caption}}</h5>
@@ -64,37 +66,37 @@
             </div>
         </div>
         {% endfor %}
-        <div class="col-md-5" style="padding-left:150px !important;bottom:3330px !important;" >
         <h3><i class="fa fa-user" style="font-size:25px;color: black;"></i>&nbsp;{{user.username}}</h3>
-            <hr>
-            <p class="text-muted"> Follow other users</p>
-            <div class="list">
-                    <br>
-                {% for profile in profile %}
-                {% if user.username == profile.username%}
-                {%else%}
-                <ul class="list-inline">
-                    <li class="list-inline-item">
-                        <a href="/viewprofile/{{profile.id}}" class="others"><strong class="list-inline"> &nbsp;&nbsp;{{profile.username}} </strong>
-                                    
-                        </a>
-                        <br>
+        <hr>
+        <p class="text-muted"> Follow other users</p>
+        <div class="list">
+            <br>
+            {% for profile in profile %}
+            {% if user.username == profile.username%}
+            {%else%}
+            <ul class="list-inline">
+                <li class="list-inline-item">
+                    <a href="/viewprofile/{{profile.id}}" class="others"><strong class="list-inline">
+                            &nbsp;&nbsp;{{profile.username}} </strong>
 
-                    </li>
-                    {% if profile in people %}
-                    <li class="list-inline-item">
-                        <a href="/unfollow/{{profile.id}}"><button class="btn btn-success btn-md">Following</button></a>
-                    </li>
-                    {% else %}
-                    <li class="list-inline-item">
-                        <a href="/follow/{{profile.id}}"><button class="btn btn-success btn-md">Follow</button></a>
-                    </li>
-                    {% endif %}
-                </ul>
+                    </a>
+                    <br>
+
+                </li>
+                {% if profile in people %}
+                <li class="list-inline-item">
+                    <a href="/unfollow/{{profile.id}}"><button class="btn btn-success btn-md">Following</button></a>
+                </li>
+                {% else %}
+                <li class="list-inline-item">
+                    <a href="/follow/{{profile.id}}"><button class="btn btn-success btn-md">Follow</button></a>
+                </li>
                 {% endif %}
-                {% endfor %}
-            </div>
+            </ul>
+            {% endif %}
+            {% endfor %}
         </div>
+
     </div>
 
 </body>
@@ -142,11 +144,12 @@
     h5 {
         margin-top: -30px;
     }
-    .list{
-    overflow: scroll;
-    width: 200px;
-    height: 255px;
-    background: rgb(241, 241, 241);
-}
+
+    .list {
+        overflow: scroll;
+        width: 200px;
+        height: 255px;
+        background: rgb(241, 241, 241);
+    }
 </style>
 {% endblock %}
